@@ -2,16 +2,23 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 
-function themeSwitcher(parentNode: HTMLElement): void {
-	const root = createRoot(parentNode);
-
-	root.render(
-		<StrictMode>
-			<App />
-		</StrictMode>,
-	);
+interface ThemeSwitcherProps {
+	svgRoot : string;
 }
 
-export { themeSwitcher };
-export default { themeSwitcher };
+class ThemeSwitcher {
+	constructor(private readonly props: ThemeSwitcherProps) {}
+
+	public render(parentNode: HTMLElement) {
+		const root = createRoot(parentNode);
+
+		root.render(
+			<StrictMode>
+				<App svgRoot={ this.props.svgRoot } />
+			</StrictMode>,
+		);
+	}
+}
+
+export { ThemeSwitcher };
 

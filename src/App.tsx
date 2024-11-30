@@ -4,7 +4,11 @@ import { UserProvider } from './lib/providers/userProvider';
 import { SystemProvider } from './lib/providers/systemProvider';
 import './styles/themeSwitcher.css';
 
-export default function App() {
+interface AppProps {
+	readonly svgRoot : string;
+}
+
+export default function App({ svgRoot }: AppProps) {
 	const userProvider   = new UserProvider();
 	const systemProvider = new SystemProvider();
 
@@ -25,9 +29,9 @@ export default function App() {
 				userProvider.changeTheme(userTheme);
 			} }
 		>
-			{ userTheme === undefined && <svg><use href="dist/images/system.svg#svg" /></svg> }
-			{ userTheme === 'light' && <svg><use href="dist/images/light.svg#svg" /></svg> }
-			{ userTheme === 'dark' && <svg><use href="dist/images/dark.svg#svg" /></svg> }
+			{ userTheme === undefined && <svg><use href={ `${svgRoot}/system.svg#svg` } /></svg> }
+			{ userTheme === 'light' && <svg><use href={ `${svgRoot}/light.svg#svg` } /></svg> }
+			{ userTheme === 'dark' && <svg><use href={ `${svgRoot}/dark.svg#svg` } /></svg> }
 		</div>
 	);
 }

@@ -38,7 +38,7 @@ module.exports = (env) => {
 					{
 						from        : 'src',
 						globOptions : {
-							ignore : [ '**/*.ts', '**/*.tsx' ],
+							ignore : [ '**/*.ts', '**/*.tsx', '**/*.css'  ],
 						},
 					},
 				],
