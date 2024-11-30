@@ -1,0 +1,13 @@
+.themeSwitcher {
+    cursor: pointer;
+}
+
+.themeSwitcher:hover {
+	filter: brightness(1.2);
+}
+
+.themeSwitcher svg {
+	width: 32px;
+	height: 32px;
+	stroke: currentColor;
+}

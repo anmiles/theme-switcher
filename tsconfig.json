@@ -1,0 +1,16 @@
+{
+	"extends" : "./node_modules/@anmiles/tsconfig/tsconfig.json",
+
+	"compilerOptions" : {
+		"rootDir" : "./src",
+		"outDir" : "./dist",
+		"jsx" : "react-jsx",
+		"sourceMap" : false,
+		"declaration" : false,
+		"declarationMap" : false
+	},
+
+	"include" : [
+		"src"
+	],
+}
