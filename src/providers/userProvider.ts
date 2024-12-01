@@ -1,6 +1,6 @@
-import { EventEmitter } from '../eventEmitter';
-import { isTheme, themes  } from '../theme';
-import type { Theme } from '../theme';
+import { EventEmitter } from '../lib/eventEmitter';
+import { isTheme, themes  } from '../lib/theme';
+import type { Theme } from '../lib/theme';
 
 class UserProvider extends EventEmitter<{ change : [Theme | undefined] }> {
 	private readonly storageKey = 'theme';

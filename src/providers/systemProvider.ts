@@ -1,6 +1,6 @@
-import { EventEmitter } from '../eventEmitter';
-import { defaultTheme, themes } from '../theme';
-import type { Theme } from '../theme';
+import { EventEmitter } from '../lib/eventEmitter';
+import { defaultTheme, themes } from '../lib/theme';
+import type { Theme } from '../lib/theme';
 
 class SystemProvider extends EventEmitter<{ change : [Theme] }> {
 
@@ -10,9 +10,9 @@ class SystemProvider extends EventEmitter<{ change : [Theme] }> {
 		}
 
 		for (const theme of themes) {
-			const query = window.matchMedia(`(prefers-color-scheme: ${theme})`);
+			const mediaQueryList = window.matchMedia(`(prefers-color-scheme: ${theme})`);
 
-			if (query.matches) {
+			if (mediaQueryList.matches) {
 				return theme;
 			}
 		}
@@ -26,9 +26,9 @@ class SystemProvider extends EventEmitter<{ change : [Theme] }> {
 		}
 
 		for (const theme of themes) {
-			const query = window.matchMedia(`(prefers-color-scheme: ${theme})`);
+			const mediaQueryList = window.matchMedia(`(prefers-color-scheme: ${theme})`);
 
-			query.addEventListener('change', (ev) => {
+			mediaQueryList.addEventListener('change', (ev) => {
 				if (ev.matches) {
 					this.emit('change', theme);
 				}

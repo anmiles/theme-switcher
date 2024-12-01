@@ -1,30 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
-import { UserProvider } from './lib/providers/userProvider';
-import { SystemProvider } from './lib/providers/systemProvider';
+import { UserProvider } from './providers/userProvider';
+import { SystemProvider } from './providers/systemProvider';
 import './styles/themeSwitcher.css';
 
 interface AppProps {
-	readonly svgRoot : string;
+	readonly svgRoot? : string;
 }
 
 export default function App({ svgRoot }: AppProps) {
-	const userProvider   = new UserProvider();
-	const systemProvider = new SystemProvider();
+	const userProvider   = useMemo(() => new UserProvider(), []);
+	const systemProvider = useMemo(() => new SystemProvider(), []);
 
 	const [ userTheme, setUserTheme ]     = useState(userProvider.get());
 	const [ systemTheme, setSystemTheme ] = useState(systemProvider.get());
 
 	const theme = userTheme ?? systemTheme;
-	document.body.setAttribute('data-theme', theme);
 
-	userProvider.on('change', setUserTheme);
-	systemProvider.on('change', setSystemTheme);
-	systemProvider.watch();
+	useEffect(() => {
+		document.body.setAttribute('data-theme', theme);
+		userProvider.on('change', setUserTheme);
+		systemProvider.on('change', setSystemTheme);
+		systemProvider.watch();
+	}, [ theme, userProvider, systemProvider ]);
 
 	return (
 		<div
 			className="themeSwitcher"
+			data-testid="theme-switcher"
 			onClick={ () => {
 				userProvider.changeTheme(userTheme);
 			} }

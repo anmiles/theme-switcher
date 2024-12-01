@@ -4,7 +4,8 @@ module.exports = {
 		'^.+\\.tsx?$' : 'ts-jest',
 	},
 
-	clearMocks : true,
+	clearMocks      : true,
+	testEnvironment : 'jsdom',
 
 	roots     : [ '<rootDir>/src' ],
 	testMatch : [ '<rootDir>/src/**/__tests__/*.test.{ts,tsx}' ],
@@ -13,4 +14,8 @@ module.exports = {
 		'<rootDir>/src/**/*.{ts,tsx}',
 		'!<rootDir>/src/**/__tests__/**',
 	],
+
+	moduleNameMapper : {
+		'\\.(css|less)$' : '<rootDir>/src/__mocks__/css.ts',
+	},
 };

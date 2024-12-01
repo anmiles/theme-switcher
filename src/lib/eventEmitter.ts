@@ -7,10 +7,19 @@ class EventEmitter<TEventMap extends Record<string, Array<unknown>>> {
 		event: TEvent,
 		listener: (...data: TEventMap[TEvent]) => void,
 	): void {
-		(this.listeners[event] ??= []).push(listener);
+		const listeners = this.listeners[event] ??= [];
+		listeners.push(listener);
 	}
 
-	public emit<TEvent extends keyof TEventMap>(
+	public off<TEvent extends keyof TEventMap>(
+		event: TEvent,
+		listener: (...data: TEventMap[TEvent]) => void,
+	): void {
+		const listeners = this.listeners[event] ??= [];
+		listeners.splice(listeners.indexOf(listener), 1);
+	}
+
+	protected emit<TEvent extends keyof TEventMap>(
 		event: TEvent,
 		...data: TEventMap[TEvent]
 	): void {

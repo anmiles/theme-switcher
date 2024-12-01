@@ -6,26 +6,28 @@ Theme switcher for websites
 
 ## Installation
 
-```bash
-git clone https://github.com/anmiles/theme-switcher.git
-cd theme-switcher
-npm clean-install
-npm run build
-```
+### For React+TS project
 
-## Usage
+_Work in progress_
 
-1. Copy all files from `dist/` into the target website.
+### For static HTML website
 
-2. Define the path containing images copied (i.e. `./my-images-path/`)
+1. Clone repository:
+    ```bash
+    git clone https://github.com/anmiles/theme-switcher.git
+    ```
 
-3. Create HTML container for theme switcher:
+2. Copy all files from `./theme-switcher/dist` into the target website.
+
+3. Define the path containing just copied images (i.e. `./my-images-path/`)
+
+4. Create HTML container for theme switcher:
 
     ```html
     <div class="my-selector"></div>
     ```
 
-4. Include React library and theme switcher:
+5. Include React library and theme switcher:
 
     ### Development
 
@@ -43,7 +45,7 @@ npm run build
     <script type="text/javascript" src="./theme-switcher.min.js"></script>
     ```
 
-5. Place theme switcher into container:
+6. Place theme switcher into container:
 
     ```html
     <script type="text/javascript">
@@ -52,18 +54,20 @@ npm run build
     </script>
     ```
 
-6. Use selectors to write theme-specific styles:
+## Usage
 
-    ```css
-        body[data-theme="light"] .selector {
-            /* css rules */
-        }
-    ```
+Use selectors to write theme-specific styles:
 
-    ```css
-        body[data-theme="dark"] .selector {
-            /* css rules */
-        }
-    ```
+```css
+    body[data-theme="light"] .selector {
+        /* css rules */
+    }
+```
 
-    Or you can just write default styles for light theme and override them for dark theme using `body[data-theme="dark"]`.
+```css
+    body[data-theme="dark"] .selector {
+        /* css rules */
+    }
+```
+
+Or you can just write default styles for light theme and override them for dark theme using `body[data-theme="dark"]`.

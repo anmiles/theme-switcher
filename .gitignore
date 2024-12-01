@@ -1,3 +1,4 @@
 **/node_modules
 coverage
-dist
+
+# TODO: ignore 'dist' after publishing to NPM (and also change instructions in README.md for static website)
