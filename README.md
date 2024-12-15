@@ -27,9 +27,9 @@ Theme switcher for websites
 
 ### For static HTML website
 
-1. Clone repository:
+1. Install package:
     ```bash
-    git clone https://github.com/anmiles/theme-switcher.git
+    npm install @anmiles/theme-switcher
     ```
 
 2. Copy all files from `dist` into the target website.
@@ -47,7 +47,7 @@ Theme switcher for websites
     ```html
     <script type="text/javascript" src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
     <script type="text/javascript" src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
-    <script type="text/javascript" src="./theme-switcher-1.0.1.js"></script>
+    <script type="text/javascript" src="./theme-switcher-1.0.2.js"></script>
     ```
 
     ### Production
@@ -55,7 +55,7 @@ Theme switcher for websites
     ```html
     <script type="text/javascript" src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
-    <script type="text/javascript" src="./theme-switcher-1.0.1.min.js"></script>
+    <script type="text/javascript" src="./theme-switcher-1.0.2.min.js"></script>
     ```
 
 6. Place theme switcher into container:
