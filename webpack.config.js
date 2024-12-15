@@ -1,4 +1,5 @@
-const path                      = require('path');
+const path = require('path');
+// eslint-disable-next-line n/no-unpublished-require
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const { version }               = require('./package.json');
 

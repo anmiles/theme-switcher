@@ -7,7 +7,6 @@
 		"switcher",
 		"websites"
 	],
-	"private": true,
 	"author": "Anatoliy Oblaukhov",
 	"homepage": "https://github.com/anmiles/theme-switcher",
 	"repository": "github:anmiles/theme-switcher",
