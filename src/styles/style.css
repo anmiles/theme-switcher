@@ -1,0 +1,52 @@
+.themeSwitcher {
+	cursor: pointer;
+	position: relative;
+}
+
+.themeSwitcher > svg:hover,
+.themeSwitcher li:hover {
+	filter: brightness(1.5);
+}
+
+.themeSwitcher svg {
+	width: 2em;
+	height: 2em;
+	stroke: currentColor;
+	display: block;
+}
+
+.themeSwitcher ul {
+	list-style-type: none;
+	position: absolute;
+	left: 0;
+	margin: 0.5em 0;
+	padding: 0;
+	gap: 0;
+	overflow-y: visible;
+	z-index: 1;
+}
+
+.themeSwitcher li {
+	padding: 0.5em 1em;
+}
+
+.themeSwitcher[data-float="right"] ul {
+	left: auto;
+	right: 0;
+}
+
+.themeSwitcher li {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+}
+
+.themeSwitcher li svg {
+	width: 1.5em;
+	height: 1.5em;
+}
+
+.themeSwitcher svg.checked {
+	width: 16px;
+	height: 13.5px;
+}

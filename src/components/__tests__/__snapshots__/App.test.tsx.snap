@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`src/App switcher html should match snapshot on dark system theme 1`] = `
+<div
+  class="themeSwitcher"
+  data-testid="theme-switcher"
+>
+  {light}
+  <ul
+    data-testid="theme-selector"
+  >
+    <li
+      data-testid="theme-item-light"
+    >
+      {light}
+      <span>
+        Light
+      </span>
+    </li>
+    <li
+      data-testid="theme-item-dark"
+    >
+      {dark}
+      <span>
+        Dark
+      </span>
+    </li>
+    <li
+      data-testid="theme-item-system"
+    >
+      {system}
+      <span>
+        System
+      </span>
+      {checked}
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`src/App switcher html should match snapshot on dark user theme 1`] = `
+<div
+  class="themeSwitcher"
+  data-testid="theme-switcher"
+>
+  {dark}
+  <ul
+    data-testid="theme-selector"
+  >
+    <li
+      data-testid="theme-item-light"
+    >
+      {light}
+      <span>
+        Light
+      </span>
+    </li>
+    <li
+      data-testid="theme-item-dark"
+    >
+      {dark}
+      <span>
+        Dark
+      </span>
+      {checked}
+    </li>
+    <li
+      data-testid="theme-item-system"
+    >
+      {system}
+      <span>
+        System
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`src/App switcher html should match snapshot on light system theme 1`] = `
+<div
+  class="themeSwitcher"
+  data-testid="theme-switcher"
+>
+  {light}
+  <ul
+    data-testid="theme-selector"
+  >
+    <li
+      data-testid="theme-item-light"
+    >
+      {light}
+      <span>
+        Light
+      </span>
+    </li>
+    <li
+      data-testid="theme-item-dark"
+    >
+      {dark}
+      <span>
+        Dark
+      </span>
+    </li>
+    <li
+      data-testid="theme-item-system"
+    >
+      {system}
+      <span>
+        System
+      </span>
+      {checked}
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`src/App switcher html should match snapshot on light user theme 1`] = `
+<div
+  class="themeSwitcher"
+  data-testid="theme-switcher"
+>
+  {light}
+  <ul
+    data-testid="theme-selector"
+  >
+    <li
+      data-testid="theme-item-light"
+    >
+      {light}
+      <span>
+        Light
+      </span>
+      {checked}
+    </li>
+    <li
+      data-testid="theme-item-dark"
+    >
+      {dark}
+      <span>
+        Dark
+      </span>
+    </li>
+    <li
+      data-testid="theme-item-system"
+    >
+      {system}
+      <span>
+        System
+      </span>
+    </li>
+  </ul>
+</div>
+`;

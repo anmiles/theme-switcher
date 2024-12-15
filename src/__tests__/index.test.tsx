@@ -1,27 +1,25 @@
 import '@testing-library/jest-dom';
 import { act } from '@testing-library/react';
-import type App from '../App';
-import { ThemeSwitcher } from '../index';
+import type App from '../components/App';
+import { ThemeSwitcherElement } from '../index';
 
-const svgRoot = './images';
-const testId  = 'app-test-id';
+const testId = 'app-test-id';
 
-jest.mock<typeof App>('../App', () => function App({ svgRoot }) {
-	return <div data-testid={ testId }>{ svgRoot }</div>;
+jest.mock<typeof App>('../components/App', () => function App() {
+	return <div>{ testId }</div>;
 });
 
 describe('src/index', () => {
 	describe('ThemeSwitcher', () => {
-		it('should render App', () => {
+		it('should render App and pass float prop', () => {
 			const parentNode = document.createElement('div');
 			document.body.appendChild(parentNode);
 
 			act(() => {
-				new ThemeSwitcher({ svgRoot }).render(parentNode);
+				new ThemeSwitcherElement({ float : 'left' }).render(parentNode);
 			});
 
-			const app = parentNode.querySelector(`[data-testid="${testId}"]`);
-			expect(app?.innerHTML).toEqual(svgRoot);
+			expect(parentNode.innerHTML).toEqual(`<div>${testId}</div>`);
 		});
 	});
 });

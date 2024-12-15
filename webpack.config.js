@@ -1,22 +1,34 @@
-const path              = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path                      = require('path');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const { version }               = require('./package.json');
 
 module.exports = (env) => {
-	const version = require('./package.json').version;
-	const ext     = env['mode'] === 'production' ? '.min.js' : '.js';
+	const isProduction = env.mode === 'production';
 
 	return {
-		entry  : './src/index.tsx',
+		mode  : env.mode,
+		entry : [
+			...isProduction ? [] : [ 'react-refresh/runtime' ],
+			'./src/index.tsx',
+		],
 		output : {
-			filename      : `theme-switcher-${version}${ext}`,
 			libraryTarget : 'umd',
+			filename      : isProduction
+				? `theme-switcher-${version}.min.js`
+				: `theme-switcher-${version}.js`,
 		},
-		mode   : env['mode'],
 		module : {
 			rules : [
 				{
-					test    : /\.tsx?$/,
-					use     : 'ts-loader',
+					test : /\.tsx?$/,
+					use  : [
+						{
+							loader  : 'ts-loader',
+							options : {
+								transpileOnly : true,
+							},
+						},
+					],
 					exclude : /node_modules/,
 				},
 				{
@@ -33,32 +45,22 @@ module.exports = (env) => {
 			'react-dom' : 'ReactDOM',
 		},
 		plugins : [
-			new CopyWebpackPlugin({
-				patterns : [
+			...isProduction ? [] : [ new ReactRefreshWebpackPlugin() ],
+		],
+		devtool   : isProduction ? undefined : 'eval-source-map',
+		devServer : isProduction
+			? undefined
+			: {
+				static : [
 					{
-						from        : 'src',
-						globOptions : {
-							ignore : [ '**/*.ts', '**/*.tsx', '**/*.css'  ],
-						},
+						directory  : path.join(__dirname, 'dev'),
+						publicPath : '/',
+					},
+					{
+						directory  : path.join(__dirname, 'src/images'),
+						publicPath : '/images',
 					},
 				],
-			}),
-		],
-		devServer : {
-			static : [
-				{
-					directory  : path.join(__dirname, 'debug'),
-					publicPath : '/',
-				},
-				{
-					directory  : path.join(__dirname, 'dist'),
-					publicPath : '/dist',
-				},
-			],
-			watchFiles : [
-				'src/**/*',
-				'debug/**/*',
-			],
-		},
+			},
 	};
 };

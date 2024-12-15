@@ -8,7 +8,22 @@ Theme switcher for websites
 
 ### For React+TS project
 
-_Work in progress_
+1. Install package:
+    ```bash
+    npm install @anmiles/theme-switcher
+    ```
+
+2. Import component:
+    ```ts
+    import { ThemeSwitcher } from '@anmiles/theme-switcher';
+    ```
+
+3. Use component:
+    ```ts
+    <ThemeSwitcher float="right" />
+    ```
+    where
+    - `float` _(optional)_ - position of icon and dropdown box
 
 ### For static HTML website
 
@@ -17,9 +32,7 @@ _Work in progress_
     git clone https://github.com/anmiles/theme-switcher.git
     ```
 
-2. Copy all files from `./theme-switcher/dist` into the target website.
-
-3. Define the path containing just copied images (i.e. `./my-images-path/`)
+2. Copy all files from `dist` into the target website.
 
 4. Create HTML container for theme switcher:
 
@@ -34,7 +47,7 @@ _Work in progress_
     ```html
     <script type="text/javascript" src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
     <script type="text/javascript" src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
-    <script type="text/javascript" src="./theme-switcher.js"></script>
+    <script type="text/javascript" src="./theme-switcher-1.0.0.js"></script>
     ```
 
     ### Production
@@ -42,17 +55,19 @@ _Work in progress_
     ```html
     <script type="text/javascript" src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
-    <script type="text/javascript" src="./theme-switcher.min.js"></script>
+    <script type="text/javascript" src="./theme-switcher-1.0.0.min.js"></script>
     ```
 
 6. Place theme switcher into container:
 
     ```html
     <script type="text/javascript">
-        new ThemeSwitcher({ svgRoot: './my-images-path/' })
+        new ThemeSwitcher({ float: 'right' })
             .render(document.querySelector('.my-selector'));
     </script>
     ```
+    where
+    - `float` _(optional)_ - position of icon and dropdown box
 
 ## Usage
 

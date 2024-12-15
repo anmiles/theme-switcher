@@ -35,26 +35,26 @@ describe('src/providers/userProvider', () => {
 		});
 	});
 
-	describe('changeTheme', () => {
-		it('should switch system theme to light theme', () => {
-			userProvider.changeTheme(undefined);
+	describe('set', () => {
+		it('should remove theme from localStorage and emit event if undefined passed', () => {
+			userProvider.set(undefined);
+
+			expect(changeSpy).toHaveBeenCalledWith(undefined);
+			expect(localStorage.getItem(storageKey)).toEqual(null);
+		});
+
+		it('should save light theme to localStorage and emit event if light passed', () => {
+			userProvider.set('light');
 
 			expect(changeSpy).toHaveBeenCalledWith('light');
 			expect(localStorage.getItem(storageKey)).toEqual('light');
 		});
 
-		it('should switch light theme to dark theme', () => {
-			userProvider.changeTheme('light');
+		it('should save dark theme to localStorage and emit event if dark passed', () => {
+			userProvider.set('dark');
 
 			expect(changeSpy).toHaveBeenCalledWith('dark');
 			expect(localStorage.getItem(storageKey)).toEqual('dark');
-		});
-
-		it('should switch dark theme to system theme', () => {
-			userProvider.changeTheme('dark');
-
-			expect(changeSpy).toHaveBeenCalledWith(undefined);
-			expect(localStorage.getItem(storageKey)).toEqual(null);
 		});
 	});
 });
