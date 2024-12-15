@@ -47,7 +47,7 @@ Theme switcher for websites
     ```html
     <script type="text/javascript" src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
     <script type="text/javascript" src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
-    <script type="text/javascript" src="./theme-switcher-1.0.0.js"></script>
+    <script type="text/javascript" src="./theme-switcher-1.0.1.js"></script>
     ```
 
     ### Production
@@ -55,7 +55,7 @@ Theme switcher for websites
     ```html
     <script type="text/javascript" src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
-    <script type="text/javascript" src="./theme-switcher-1.0.0.min.js"></script>
+    <script type="text/javascript" src="./theme-switcher-1.0.1.min.js"></script>
     ```
 
 6. Place theme switcher into container:
