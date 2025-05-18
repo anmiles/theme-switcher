@@ -5,7 +5,7 @@ const changeSpy  = jest.fn();
 let userProvider: UserProvider;
 
 beforeEach(() => {
-	window.localStorage.clear();
+	localStorage.clear();
 	userProvider = new UserProvider();
 	userProvider.on('change', changeSpy);
 });
@@ -13,19 +13,19 @@ beforeEach(() => {
 describe('src/providers/userProvider', () => {
 	describe('get', () => {
 		it('should return light theme if set in localStorage', () => {
-			window.localStorage.setItem(storageKey, 'light');
+			localStorage.setItem(storageKey, 'light');
 
 			expect(userProvider.get()).toEqual('light');
 		});
 
 		it('should return dark theme if set in localStorage', () => {
-			window.localStorage.setItem(storageKey, 'dark');
+			localStorage.setItem(storageKey, 'dark');
 
 			expect(userProvider.get()).toEqual('dark');
 		});
 
 		it('should return undefined if unknown string set in localStorage', () => {
-			window.localStorage.setItem(storageKey, 'unknown');
+			localStorage.setItem(storageKey, 'unknown');
 
 			expect(userProvider.get()).toEqual(undefined);
 		});

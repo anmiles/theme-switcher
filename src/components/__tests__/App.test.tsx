@@ -1,65 +1,64 @@
-import { render, screen, fireEvent, act } from '@testing-library/react';
-import type { UserProvider } from '../../providers/userProvider';
-import type { SystemProvider } from '../../providers/systemProvider';
-import type { AppProps } from '../App';
-import App from '../App';
+import '@testing-library/jest-dom';
+import { act, fireEvent, render, screen } from '@testing-library/react';
+
 import { EventEmitter } from '../../lib/eventEmitter';
 import type { Theme } from '../../lib/theme';
-import '@testing-library/jest-dom';
+import { SystemProvider } from '../../providers/systemProvider';
+import { UserProvider } from '../../providers/userProvider';
+import type { AppProps } from '../App';
+import App from '../App';
+import Checked from '../icons/Checked';
+import Dark from '../icons/Dark';
+import Light from '../icons/Light';
+import System from '../icons/System';
 
-jest.mock('../icons/Checked.tsx', () => function Checked() {
-	return '{checked}';
-});
+jest.mock('../icons/Checked');
+jest.mock('../icons/Dark');
+jest.mock('../icons/Light');
+jest.mock('../icons/System');
 
-jest.mock('../icons/Dark.tsx', () => function Dark() {
-	return '{dark}';
-});
-
-jest.mock('../icons/Light.tsx', () => function Light() {
-	return '{light}';
-});
-
-jest.mock('../icons/System.tsx', () => function System() {
-	return '{system}';
-});
+jest.mock('../../providers/userProvider');
+jest.mock('../../providers/systemProvider');
 
 let userTheme: Theme | undefined;
 let systemTheme: Theme;
-
-const userEventEmitter   = new EventEmitter<{ change : [Theme | undefined] }>();
-const systemEventEmitter = new EventEmitter<{ change : [Theme | undefined] }>();
-
-const userProvider: Partial<InstanceType<typeof UserProvider>> = {
-	get : jest.fn().mockImplementation(() => userTheme),
-
-	set : jest.fn().mockImplementation((theme: Theme | undefined) => {
-		userEventEmitter['emit']('change', theme);
-	}),
-
-	on  : jest.fn().mockImplementation(userEventEmitter.on.bind(userEventEmitter)),
-	off : jest.fn().mockImplementation(userEventEmitter.off.bind(userEventEmitter)),
-};
-
-const systemProvider: Partial<InstanceType<typeof SystemProvider>> = {
-	get   : jest.fn().mockImplementation(() => systemTheme),
-	watch : jest.fn(),
-	on    : jest.fn().mockImplementation(systemEventEmitter.on.bind(systemEventEmitter)),
-	off   : jest.fn().mockImplementation(systemEventEmitter.on.bind(systemEventEmitter)),
-};
-
-jest.mock<{ UserProvider : typeof UserProvider }>('../../providers/userProvider', () => ({
-	UserProvider : jest.fn().mockImplementation(() => userProvider),
-}));
-
-jest.mock<{ SystemProvider : typeof SystemProvider }>('../../providers/systemProvider', () => ({
-	SystemProvider : jest.fn().mockImplementation(() => systemProvider),
-}));
 
 function renderApp({ float }: AppProps) {
 	render(
 		<App float={ float } />,
 	);
 }
+
+const userEventEmitter   = new EventEmitter<{ change: [Theme | undefined] }>();
+const systemEventEmitter = new EventEmitter<{ change: [Theme | undefined] }>();
+
+const userProvider: Partial<InstanceType<typeof UserProvider>> = {
+	get: jest.fn().mockImplementation(() => userTheme),
+
+	set: jest.fn().mockImplementation((theme: Theme | undefined) => {
+		userEventEmitter['emit']('change', theme);
+	}),
+
+	on : jest.fn().mockImplementation(userEventEmitter.on.bind(userEventEmitter)),
+	off: jest.fn().mockImplementation(userEventEmitter.off.bind(userEventEmitter)),
+};
+
+const systemProvider: Partial<InstanceType<typeof SystemProvider>> = {
+	get  : jest.fn().mockImplementation(() => systemTheme),
+	watch: jest.fn(),
+	on   : jest.fn().mockImplementation(systemEventEmitter.on.bind(systemEventEmitter)),
+	off  : jest.fn().mockImplementation(systemEventEmitter.on.bind(systemEventEmitter)),
+};
+
+jest.mocked(Checked).mockReturnValue(<div data-testid="mock-icon-checked" />);
+jest.mocked(Dark).mockReturnValue(<div data-testid="mock-icon-dark" />);
+jest.mocked(Light).mockReturnValue(<div data-testid="mock-icon-light" />);
+jest.mocked(System).mockReturnValue(<div data-testid="mock-icon-system" />);
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+jest.mocked(UserProvider).mockImplementation(() => userProvider as UserProvider);
+// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
+jest.mocked(SystemProvider).mockImplementation(() => systemProvider as SystemProvider);
 
 afterEach(() => {
 	document.body.removeAttribute('data-theme');
@@ -198,7 +197,7 @@ describe('src/App', () => {
 			renderApp({});
 
 			const themeSwitcher = screen.getByTestId('theme-switcher');
-			expect(themeSwitcher.innerHTML).toEqual('{light}');
+			expect(themeSwitcher).toContainElement(screen.getByTestId('mock-icon-light'));
 		});
 
 		it('should match dark system theme if user theme is not defined', () => {
@@ -208,7 +207,7 @@ describe('src/App', () => {
 			renderApp({});
 
 			const themeSwitcher = screen.getByTestId('theme-switcher');
-			expect(themeSwitcher.innerHTML).toEqual('{dark}');
+			expect(themeSwitcher).toContainElement(screen.getByTestId('mock-icon-dark'));
 		});
 
 		it('should match light user theme despite of system theme', () => {
@@ -218,7 +217,7 @@ describe('src/App', () => {
 			renderApp({});
 
 			const themeSwitcher = screen.getByTestId('theme-switcher');
-			expect(themeSwitcher.innerHTML).toEqual('{light}');
+			expect(themeSwitcher).toContainElement(screen.getByTestId('mock-icon-light'));
 		});
 
 		it('should match dark user theme despite of system theme', () => {
@@ -228,7 +227,7 @@ describe('src/App', () => {
 			renderApp({});
 
 			const themeSwitcher = screen.getByTestId('theme-switcher');
-			expect(themeSwitcher.innerHTML).toEqual('{dark}');
+			expect(themeSwitcher).toContainElement(screen.getByTestId('mock-icon-dark'));
 		});
 	});
 
@@ -278,14 +277,14 @@ describe('src/App', () => {
 
 		describe('data-float', () => {
 			it('should be set left from float prop', () => {
-				renderApp({ float : 'left' });
+				renderApp({ float: 'left' });
 
 				const themeSwitcher = screen.getByTestId('theme-switcher');
 				expect(themeSwitcher.getAttribute('data-float')).toEqual('left');
 			});
 
 			it('should be set right from float prop', () => {
-				renderApp({ float : 'right' });
+				renderApp({ float: 'right' });
 
 				const themeSwitcher = screen.getByTestId('theme-switcher');
 				expect(themeSwitcher.getAttribute('data-float')).toEqual('right');

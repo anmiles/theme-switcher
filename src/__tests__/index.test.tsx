@@ -1,13 +1,13 @@
 import '@testing-library/jest-dom';
-import { act } from '@testing-library/react';
-import type App from '../components/App';
-import { ThemeSwitcherElement } from '../index';
+import { act, screen } from '@testing-library/react';
+
+import App from '../components/App';
+import { Element } from '../index';
 
 const testId = 'app-test-id';
 
-jest.mock<typeof App>('../components/App', () => function App() {
-	return <div>{ testId }</div>;
-});
+jest.mock('../components/App');
+jest.mocked(App).mockReturnValue(<div data-testid={ testId }></div>);
 
 describe('src/index', () => {
 	describe('ThemeSwitcher', () => {
@@ -16,10 +16,12 @@ describe('src/index', () => {
 			document.body.appendChild(parentNode);
 
 			act(() => {
-				new ThemeSwitcherElement({ float : 'left' }).render(parentNode);
+				new Element({ float: 'left' }).render(parentNode);
 			});
 
-			expect(parentNode.innerHTML).toEqual(`<div>${testId}</div>`);
+			const app = screen.getByTestId(testId);
+
+			expect(parentNode).toContainElement(app);
 		});
 	});
 });

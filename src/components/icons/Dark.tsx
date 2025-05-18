@@ -8,6 +8,5 @@ export default function Dark() {
 			<circle cx="50" cy="50" r="46" strokeDasharray="180" transform="rotate(22.5 50 50)" />
 			<circle cx="75" cy="25" r="46" strokeDasharray="108 200" transform="rotate(67.5 75 25)" />
 		</svg>
-
 	);
 }

@@ -1,16 +1,12 @@
 {
-	"extends" : "./node_modules/@anmiles/tsconfig/tsconfig.json",
-
-	"compilerOptions" : {
-		"rootDir" : "./src",
-		"outDir" : "./dist",
-		"jsx" : "react-jsx",
-		"sourceMap" : false,
-		"declaration" : false,
-		"declarationMap" : false
-	},
+	"extends" : "./node_modules/@anmiles/tsconfig/tsconfig.client.json",
 
 	"include" : [
-		"src"
+		"src",
+		"vite.config.mts",
 	],
+
+	"compilerOptions" : {
+		"types" : [ "vite/client" ],
+	},
 }

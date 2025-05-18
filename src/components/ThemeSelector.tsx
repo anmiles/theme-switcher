@@ -1,11 +1,12 @@
 import type { Theme } from '../lib/theme';
 import { getThemeName, themes } from '../lib/theme';
+
 import Icon from './Icon';
 import Checked from './icons/Checked';
 
 interface ThemeSelectorProps {
-	readonly currentUserTheme : Theme | undefined;
-	readonly onListItemClick  : (theme: Theme | undefined) => void;
+	readonly currentUserTheme: Theme | undefined;
+	readonly onListItemClick: (theme: Theme | undefined)=> void;
 }
 
 export default function ThemeSelector({ currentUserTheme, onListItemClick }: ThemeSelectorProps) {

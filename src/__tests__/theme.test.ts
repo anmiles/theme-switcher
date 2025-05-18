@@ -1,4 +1,4 @@
-import { isTheme, getThemeName } from '../lib/theme';
+import { getThemeName, isTheme } from '../lib/theme';
 
 describe('src/lib/theme', () => {
 	describe('isTheme', () => {

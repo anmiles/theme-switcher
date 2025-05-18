@@ -1,7 +1,7 @@
 import { EventEmitter } from '../eventEmitter';
 
 describe('src/lib/eventEmitter', () => {
-	const data = { key : 'value' };
+	const data = { key: 'value' };
 
 	const changeListener1 = jest.fn();
 	const changeListener2 = jest.fn();
@@ -23,8 +23,8 @@ describe('src/lib/eventEmitter', () => {
 
 	it('should register added listeners', () => {
 		const expectedListeners = {
-			change : [ changeListener1, changeListener2 ],
-			delete : [ deleteListener1, deleteListener2 ],
+			change: [ changeListener1, changeListener2 ],
+			delete: [ deleteListener1, deleteListener2 ],
 		};
 
 		expect(eventEmitter['listeners']).toEqual(expectedListeners);
@@ -93,7 +93,7 @@ describe('src/lib/eventEmitter', () => {
 	it('should work correctly in derived class', () => {
 		const spy = jest.fn();
 
-		class EventEmitterChild extends EventEmitter<{ myEvent : [{ id : number }, string] }> {
+		class EventEmitterChild extends EventEmitter<{ myEvent: [{ id: number }, string] }> {
 		}
 
 		const instance = new EventEmitterChild();
@@ -102,8 +102,8 @@ describe('src/lib/eventEmitter', () => {
 			spy(...data);
 		});
 
-		instance['emit']('myEvent', { id : 1 }, 'something');
+		instance['emit']('myEvent', { id: 1 }, 'something');
 
-		expect(spy).toHaveBeenCalledWith({ id : 1 }, 'something');
+		expect(spy).toHaveBeenCalledWith({ id: 1 }, 'something');
 	});
 });

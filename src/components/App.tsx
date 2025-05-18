@@ -1,14 +1,16 @@
+import '../styles/style.css';
+
 import type { CSSProperties } from 'react';
 import { useEffect, useMemo, useState } from 'react';
 
-import { UserProvider } from '../providers/userProvider';
 import { SystemProvider } from '../providers/systemProvider';
-import '../styles/style.css';
+import { UserProvider } from '../providers/userProvider';
+
 import Icon from './Icon';
 import ThemeSelector from './ThemeSelector';
 
 export interface AppProps {
-	readonly float? : CSSProperties['float'];
+	readonly float?: CSSProperties['float'];
 }
 
 export default function App({ float }: AppProps) {
@@ -42,14 +44,14 @@ export default function App({ float }: AppProps) {
 			{ !showList
 				? null
 				: (
-					<ThemeSelector
-						currentUserTheme={ userTheme }
-						onListItemClick={ (theme) => {
-							userProvider.set(theme);
-							setShowList(false);
-						} }
-					/>
-				) }
+						<ThemeSelector
+							currentUserTheme={ userTheme }
+							onListItemClick={ (theme) => {
+								userProvider.set(theme);
+								setShowList(false);
+							} }
+						/>
+					) }
 		</div>
 	);
 }

@@ -1,9 +1,10 @@
-import { StrictMode  } from 'react';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+
 import type { AppProps } from './components/App';
 import App from './components/App';
 
-class ThemeSwitcherElement {
+export class Element {
 	constructor(private readonly props: AppProps) {}
 
 	public render(parentNode: HTMLElement) {
@@ -17,4 +18,4 @@ class ThemeSwitcherElement {
 	}
 }
 
-export { ThemeSwitcherElement, App as ThemeSwitcher };
+export { App as ThemeSwitcher };

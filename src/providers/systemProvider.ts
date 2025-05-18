@@ -2,7 +2,7 @@ import { EventEmitter } from '../lib/eventEmitter';
 import { defaultTheme, themes } from '../lib/theme';
 import type { Theme } from '../lib/theme';
 
-class SystemProvider extends EventEmitter<{ change : [Theme] }> {
+export class SystemProvider extends EventEmitter<{ change: [Theme] }> {
 
 	public get(): Theme {
 		if (!('matchMedia' in window)) {
@@ -36,5 +36,3 @@ class SystemProvider extends EventEmitter<{ change : [Theme] }> {
 		}
 	}
 }
-
-export { SystemProvider };
