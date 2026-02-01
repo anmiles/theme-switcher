@@ -28,7 +28,7 @@ beforeEach(() => {
 			matches         : parsedTheme === systemPreference,
 			addEventListener: (
 				event: keyof MediaQueryListEventMap,
-				listener: (ev: Partial<MediaQueryListEvent>)=> void,
+				listener: (ev: Partial<MediaQueryListEvent>) => void,
 			) => {
 				mediaQueryListEvents[parsedTheme].on(event, listener);
 			},

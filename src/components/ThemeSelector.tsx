@@ -6,7 +6,7 @@ import Checked from './icons/Checked';
 
 interface ThemeSelectorProps {
 	readonly currentUserTheme: Theme | undefined;
-	readonly onListItemClick: (theme: Theme | undefined)=> void;
+	readonly onListItemClick: (theme: Theme | undefined) => void;
 }
 
 export default function ThemeSelector({ currentUserTheme, onListItemClick }: ThemeSelectorProps) {

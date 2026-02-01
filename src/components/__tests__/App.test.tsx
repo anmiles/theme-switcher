@@ -56,9 +56,9 @@ jest.mocked(Light).mockReturnValue(<div data-testid="mock-icon-light" />);
 jest.mocked(System).mockReturnValue(<div data-testid="mock-icon-system" />);
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
-jest.mocked(UserProvider).mockImplementation(() => userProvider as UserProvider);
+jest.mocked(UserProvider).mockReturnValue(userProvider as UserProvider);
 // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
-jest.mocked(SystemProvider).mockImplementation(() => systemProvider as SystemProvider);
+jest.mocked(SystemProvider).mockReturnValue(systemProvider as SystemProvider);
 
 afterEach(() => {
 	document.body.removeAttribute('data-theme');
