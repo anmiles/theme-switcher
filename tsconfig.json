@@ -6,7 +6,10 @@
 		"vite.config.mts",
 	],
 
-	"compilerOptions" : {
-		"types" : [ "vite/client" ],
+	"compilerOptions": {
+		"types": [
+			"jest",
+			"vite/client",
+		],
 	},
 }
